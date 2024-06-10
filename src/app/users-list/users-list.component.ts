@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { SnackbarService } from '../snackbar.service';
 import { UserService } from '../user.service';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'users-list',

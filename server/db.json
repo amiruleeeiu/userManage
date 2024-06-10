@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "name": "Amirul Islam",
+      "designation": "sdf",
+      "email": "test@gmail.com",
+      "phone": "01746162231",
+      "dateOfBirth": "2024-06-05T18:00:00.000Z",
+      "gander": "male",
+      "isNrb": false,
+      "passport": "dsf",
+      "residence": "dsf",
+      "nid": "2314",
+      "prNumber": "sdf",
+      "orgAddress": "fds",
+      "id": 12
+    }
+  ]
+}

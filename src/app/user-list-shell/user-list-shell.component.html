@@ -1,0 +1,6 @@
+<users-list
+[dataSource]="dataSource()"
+(refetchData)="fetchData($any($event))"
+(onDelete)="handleDelete($any($event))"
+(onOpenDialog)="openDialog($any($event))"
+/>

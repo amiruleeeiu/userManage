@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { UserListShellComponent } from './user-list-shell/user-list-shell.component';
+import { UsersListComponent } from "./users-list/users-list.component";
 
 const routes: Routes = [
   {
@@ -33,8 +35,8 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('../app/users-list/users-list.component').then(
-        (t) => t.UsersListComponent
+      import('../app/user-list-shell/user-list-shell.component').then(
+        (t) => t.UserListShellComponent
       ),
   },
   {
@@ -46,8 +48,15 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({ declarations: [AppComponent, AddUserComponent, AboutComponent, HomeComponent],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+@NgModule({
+    declarations: [AppComponent, AddUserComponent, AboutComponent, HomeComponent],
+    bootstrap: [AppComponent],
+    providers: [
+        provideAnimationsAsync(),
+        provideHttpClient(withInterceptorsFromDi())
+    ],
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         MatTableModule,
         MatPaginatorModule,
@@ -63,8 +72,7 @@ const routes: Routes = [
         MatNativeDateModule,
         MatProgressSpinnerModule,
         MatSnackBarModule,
-        RouterModule.forRoot(routes)], providers: [
-        provideAnimationsAsync(),
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
-export class AppModule {}
+        RouterModule.forRoot(routes),
+    ]
+})
+export class AppModule { }

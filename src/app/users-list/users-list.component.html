@@ -4,7 +4,7 @@
   </button>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
       <!-- Position Column -->
       <ng-container matColumnDef="serial">
         <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -54,13 +54,13 @@
     </table>
 
     <mat-paginator
-      [length]="total"
-      [pageSize]="limit"
+      [length]="dataSource().length"
+      [pageSize]="5"
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
       aria-label="Select page of periodic elements"
-      (page)="handlePage($event)"
     >
+    <!-- (page)="handlePage($event)" -->
     </mat-paginator>
   </div>
 </div>

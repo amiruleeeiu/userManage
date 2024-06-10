@@ -1,9 +1,6 @@
+import { MatTableModule } from '@angular/material/table';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { SnackbarService } from '../snackbar.service';
@@ -20,6 +17,7 @@ import { UserService } from '../user.service';
     MatButtonModule,
     ReactiveFormsModule,
     RouterModule,
+    MatDialogModule,
   ],
 })
 export class UsersListComponent implements OnInit {

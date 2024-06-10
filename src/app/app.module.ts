@@ -19,6 +19,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const routes: Routes = [
   {
@@ -67,7 +68,9 @@ const routes: Routes = [
     MatSnackBarModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

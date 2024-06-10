@@ -1,0 +1,113 @@
+<h2 mat-dialog-title>{{ data?.title }} User</h2>
+<mat-dialog-content>
+  <form class="example-form" [formGroup]="userForm">
+    <mat-label>Name</mat-label>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Name" formControlName="name" />
+    </mat-form-field>
+    <mat-label>Phone</mat-label>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Phone" formControlName="phone" />
+    </mat-form-field>
+    <mat-label>Email</mat-label>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Email" formControlName="email" />
+    </mat-form-field>
+
+    <div class="flex items-center justify-between mb-3">
+      <mat-label>Skills</mat-label>
+      <button mat-flat-button color="primary" (click)="addSkill()">
+        Add Skill
+      </button>
+    </div>
+    <div formArrayName="skills">
+      <div
+        *ngFor="let skill of skills.controls; let i = index"
+        class="flex items-center gap-2"
+      >
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Skill" [formControlName]="i" />
+        </mat-form-field>
+        <button mat-flat-button color="warn" (click)="removeSkill(i)">
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <div formArrayName="experiences">
+      <div class="flex items-center justify-between mb-3">
+        <h1 class="mb-2 text-lg font-semibold">Experience</h1>
+        <button mat-flat-button color="primary" (click)="addExperience()">
+          Add Experience
+        </button>
+      </div>
+      <div
+        *ngFor="let expGroup of experiences.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <mat-label>Company Name</mat-label>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Company Name"
+            formControlName="company"
+          />
+        </mat-form-field>
+        <mat-label>Duration</mat-label>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Duration" formControlName="duration" />
+        </mat-form-field>
+        <div class="flex gap-2">
+          <div class="w-full">
+            <mat-label>Start Date</mat-label>
+            <br />
+            <mat-form-field class="w-full">
+              <input
+                matInput
+                [matDatepicker]="startPicker"
+                formControlName="startDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="startPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="w-full">
+            <mat-label>End Date</mat-label>
+            <br />
+            <mat-form-field class="w-full">
+              <input
+                matInput
+                [matDatepicker]="endPicker"
+                formControlName="endDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="endPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <button mat-flat-button color="warn" (click)="removeExperience(i)">
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="handleClose()">Cancel</button>
+  <button
+    mat-flat-button
+    cdkFocusInitial
+    color="primary"
+    (click)="handleSubmit()"
+  >
+    {{ editData?.id ? "Update" : "Add" }}
+  </button>
+</mat-dialog-actions>

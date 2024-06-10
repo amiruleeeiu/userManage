@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles.css or styles.scss */
+.custom-snackbar {
+  background-color: #4caf50; /* Green background */
+  color: #ffffff; /* White text */
+}

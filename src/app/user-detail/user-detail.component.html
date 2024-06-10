@@ -1,0 +1,42 @@
+<div class="m-12">
+  <button mat-flat-button color="warn" (click)="back()">Back</button>
+  <table>
+    <tr>
+      <td class="w-1/2">Name</td>
+      <td class="w-1/2">{{ userData?.name }}</td>
+    </tr>
+    <tr>
+      <td class="w-1/2">Phone</td>
+      <td class="w-1/2">{{ userData?.phone }}</td>
+    </tr>
+    <tr>
+      <td class="w-1/2">Email</td>
+      <td class="w-1/2">{{ userData?.email }}</td>
+    </tr>
+  </table>
+
+  <div class="mt-3">
+    <h1 class="text-lg font-semibold mb-3">Experience</h1>
+
+    <div *ngFor="let exp of userData?.experiences" class="my-3">
+      <table>
+        <tr>
+          <td class="w-1/2">Company Name</td>
+          <td class="w-1/2">{{ exp?.company }}</td>
+        </tr>
+        <tr>
+          <td class="w-1/2">Duration</td>
+          <td class="w-1/2">{{ exp?.duration }}</td>
+        </tr>
+        <tr>
+          <td class="w-1/2">Start Date</td>
+          <td class="w-1/2">{{ exp?.startDate | date }}</td>
+        </tr>
+        <tr>
+          <td class="w-1/2">End Date</td>
+          <td class="w-1/2">{{ exp?.endDate | date }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

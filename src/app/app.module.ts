@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,31 +46,25 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  declarations: [AppComponent, AddUserComponent, AboutComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    HttpClientModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatProgressSpinnerModule,
-    MatSnackBarModule,
-    RouterModule.forRoot(routes),
-  ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent, AddUserComponent, AboutComponent, HomeComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatProgressSpinnerModule,
+        MatSnackBarModule,
+        RouterModule.forRoot(routes)], providers: [
+        provideAnimationsAsync(),
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {}

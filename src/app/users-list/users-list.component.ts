@@ -21,6 +21,8 @@ import { tap } from 'rxjs';
     MatDialogModule,
   ],
 })
+
+
 export class UsersListComponent implements AfterViewInit {
   displayedColumns: string[] = ['serial', 'name', 'email', 'action'];
 
@@ -32,7 +34,6 @@ export class UsersListComponent implements AfterViewInit {
   // total = 100;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
 
   ngAfterViewInit(): void {
 

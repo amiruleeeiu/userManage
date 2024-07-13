@@ -8,6 +8,7 @@ import { SnackbarService } from './../snackbar.service';
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.css',
+  
 })
 export class AddUserComponent implements OnInit {
   userForm!: FormGroup;
@@ -18,7 +19,7 @@ export class AddUserComponent implements OnInit {
     public ref: MatDialogRef<AddUserComponent>,
     public fb: FormBuilder,
     public userService: UserService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +28,9 @@ export class AddUserComponent implements OnInit {
       name: [''],
       email: [''],
       phone: [''],
+      fileName: [''],
       skills: this.fb.array([this.fb.control('')]),
+      address: [],
       experiences: this.fb.array([
         this.fb.group({
           company: [''],
@@ -73,7 +76,7 @@ export class AddUserComponent implements OnInit {
         duration: [''],
         startDate: [''],
         endDate: [''],
-      })
+      }),
     );
   }
 
@@ -95,6 +98,7 @@ export class AddUserComponent implements OnInit {
 
   handleSubmit() {
     console.log(this.userForm.value);
+    console.log(this.userForm);
 
     if (this.userForm.valid) {
       if (this.userForm.value.id) {
@@ -103,10 +107,10 @@ export class AddUserComponent implements OnInit {
           this.snackbarService.openSnackBar('Successfully Updated.');
         });
       } else {
-        this.userService.addUser(this.userForm.value).subscribe((res) => {
-          this.handleClose(true);
-          this.snackbarService.openSnackBar('Successfully Added.');
-        });
+        // this.userService.addUser(this.userForm.value).subscribe((res) => {
+        //   this.handleClose(true);
+        //   this.snackbarService.openSnackBar('Successfully Added.');
+        // });
       }
     }
   }

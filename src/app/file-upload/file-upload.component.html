@@ -1,0 +1,23 @@
+<input
+  type="file"
+  (change)="onFileSelected($event)"
+  class="hidden"
+  #fileUpload
+/>
+
+<div>
+  <mat-form-field>
+    <input
+      class="w-full"
+      appearance="outline"
+      type="text"
+      matInput
+      [readonly]="true"
+      [value]="fileName"
+    />
+  </mat-form-field>
+
+  <button mat-mini-fab color="primary" (click)="onClick(fileUpload)">
+    <mat-icon>attach_file</mat-icon>
+  </button>
+</div>

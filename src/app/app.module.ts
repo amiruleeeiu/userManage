@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -9,6 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -18,13 +20,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutChildComponent } from './about-child/about-child.component';
 import { AboutComponent } from './about/about.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddressComponent } from './address/address.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { HomeComponent } from './home/home.component';
-import { AboutChildComponent } from './about-child/about-child.component';
-import { NgOptimizedImage } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -52,13 +55,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, AddUserComponent, AboutComponent, HomeComponent, AboutChildComponent],
+  declarations: [
+    AppComponent,
+    AddUserComponent,
+    HomeComponent,
+    AboutChildComponent,
+    FileUploadComponent,
+    AddressComponent,
+  ],
   bootstrap: [AppComponent],
   providers: [
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi()),
   ],
   imports: [
+    MatIconModule,
     BrowserModule,
     AppRoutingModule,
     MatTableModule,

@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ViewChild, input, output, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  input,
+  output,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -6,6 +12,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { tap } from 'rxjs';
+import { PageTitleComponent } from '../page-title/page-title.component';
 
 @Component({
   selector: 'users-list',
@@ -19,33 +26,32 @@ import { tap } from 'rxjs';
     ReactiveFormsModule,
     RouterModule,
     MatDialogModule,
+    PageTitleComponent,
   ],
 })
-
-
 export class UsersListComponent implements AfterViewInit {
   displayedColumns: string[] = ['serial', 'name', 'email', 'action'];
 
   dataSource = input<any>();
 
-  refetchData = output<{ page: number, limit: number }>();
-  onDelete = output<number>()
-  onOpenDialog = output<void | number>()
+  refetchData = output<{ page: number; limit: number }>();
+  onDelete = output<number>();
+  onOpenDialog = output<void | number>();
   // total = 100;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit(): void {
-
-    this.paginator.page.pipe(
-      tap(() =>
-        this.refetchData.emit({
-          page: this.paginator.pageIndex,
-          limit: this.paginator.pageSize
-        })
+    this.paginator.page
+      .pipe(
+        tap(() =>
+          this.refetchData.emit({
+            page: this.paginator.pageIndex,
+            limit: this.paginator.pageSize,
+          }),
+        ),
       )
-    ).subscribe();
-
+      .subscribe();
   }
 
   addUser() {
@@ -57,7 +63,7 @@ export class UsersListComponent implements AfterViewInit {
   }
 
   handleDelete(id: number) {
-    this.onDelete.emit(id)
+    this.onDelete.emit(id);
   }
 
   // handlePage(e: PageEvent) {
@@ -66,8 +72,6 @@ export class UsersListComponent implements AfterViewInit {
   //   this.limit = e.pageSize;
   //   this.fetchData();
   // }
-
-
 }
 
 // export interface PeriodicElement {

@@ -63,7 +63,16 @@ export class AddressComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
+  get district() {
+    return this.form.get('district');
+  }
+  get thana() {
+    return this.form.get('thana');
+  }
   get postCode() {
     return this.form.get('postCode');
+  }
+  get address() {
+    return this.form.get('address');
   }
 }

@@ -1,3 +1,7 @@
 <div>
-  <app-page-title [title]="'Welcome to abount page'" class="p-3" [titleType]="'about'"/>
+  <ul>
+    <li *ngFor="let user of users | professionFilter: profession">
+      {{ user.profession }} ({{ user.age }})
+    </li>
+  </ul>
 </div>

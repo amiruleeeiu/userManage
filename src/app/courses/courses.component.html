@@ -1,0 +1,13 @@
+<button (click)="handleChange()">Chnage category</button>
+
+<div
+  *ngFor="
+    let course of courses | filterByCategory: category;
+  "
+>
+  <course-item [course]="course" />
+
+ 
+</div>
+
+

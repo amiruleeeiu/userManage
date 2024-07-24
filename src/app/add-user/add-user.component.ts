@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Inject, OnChanges, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../user.service';
 import { SnackbarService } from './../snackbar.service';
@@ -10,7 +10,7 @@ import { SnackbarService } from './../snackbar.service';
   styleUrl: './add-user.component.css',
   
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent implements OnInit, OnChanges {
   userForm!: FormGroup;
   editData: any;
 
@@ -20,14 +20,20 @@ export class AddUserComponent implements OnInit {
     public fb: FormBuilder,
     public userService: UserService,
     private snackbarService: SnackbarService,
-  ) {}
+  ) {
+    console.log('hello constructor');
+  }
+
+  ngOnChanges(changes: any): void {
+    console.log('ng changes', changes);
+  }
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
       id: [''],
-      name: [''],
-      email: [''],
-      phone: [''],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
       fileName: [''],
       skills: this.fb.array([this.fb.control('')]),
       address: [],
@@ -49,6 +55,8 @@ export class AddUserComponent implements OnInit {
         this.populateForm(res);
       });
     }
+
+    console.log('hello oninit');
   }
 
   populateForm(user: any) {
@@ -96,9 +104,25 @@ export class AddUserComponent implements OnInit {
     return this.userForm.get('experiences') as FormArray;
   }
 
+  get name() {
+    return this.userForm.get('name');
+  }
+
+  get phone() {
+    return this.userForm.get('phone');
+  }
+
+  get email() {
+    return this.userForm.get('email');
+  }
+
   handleSubmit() {
     console.log(this.userForm.value);
     console.log(this.userForm);
+
+    console.log(this.email?.hasError('required'));
+
+    this.userForm.markAllAsTouched();
 
     if (this.userForm.valid) {
       if (this.userForm.value.id) {

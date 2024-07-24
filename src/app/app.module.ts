@@ -1,4 +1,4 @@
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -26,6 +26,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddressComponent } from './address/address.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter.component';
+import { CoursesComponent } from './courses/courses.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { HomeComponent } from './home/home.component';
 
@@ -37,6 +39,14 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'courses',
+    component: CoursesComponent,
+  },
+  {
+    path: 'counter',
+    component: CounterComponent,
   },
   {
     path: '',
@@ -69,6 +79,7 @@ const routes: Routes = [
     provideHttpClient(withInterceptorsFromDi()),
   ],
   imports: [
+    CommonModule,
     MatIconModule,
     BrowserModule,
     AppRoutingModule,

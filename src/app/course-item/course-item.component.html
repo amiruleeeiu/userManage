@@ -1,0 +1,10 @@
+<div class="m-12 border-2 p-5 w-[400px]">
+  <course-title [title]="course?.description" [color]="'bg-red-600'" />
+  <p>{{ course?.longDescription }}</p>
+  <div class="text-center my-4">
+    <span class="bg-green-100 p-2">{{ course?.category }}</span>
+  </div>
+  <div class="flex items-center justify-center">
+    <button class="bg-gray-200 px-4 py-2 rounded">Add To Cart</button>
+  </div>
+</div>

@@ -1,7 +1,7 @@
-<form [formGroup]="form">
+<div *ngIf="getFormGroup() as addressFormGroup" [formGroup]="addressFormGroup">
   <div class="flex flex-col">
     <mat-label>District</mat-label>
-    <mat-form-field class="" appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
       <input matInput placeholder="Enter District" formControlName="district" />
       <mat-error *ngIf="district?.hasError('required')"
         >District is required</mat-error
@@ -10,7 +10,7 @@
   </div>
   <div class="flex flex-col">
     <mat-label>Thana</mat-label>
-    <mat-form-field class="" appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
       <input matInput placeholder="Enter Thana" formControlName="thana" />
       <mat-error *ngIf="thana?.hasError('required')"
         >Thana is required</mat-error
@@ -19,31 +19,24 @@
   </div>
   <div class="flex flex-col">
     <mat-label>Post Code</mat-label>
-    <mat-form-field class="" appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
       <input
         matInput
         placeholder="Enter Post Code"
         formControlName="postCode"
       />
       <mat-error *ngIf="postCode?.hasError('required')"
-        >Post code is required</mat-error
-      >
-      <mat-error *ngIf="postCode?.hasError('pattern')"
-        >Post Code must be a number</mat-error
-      >
-      <mat-error *ngIf="postCode?.hasError('maxlength')"
-        >Post Code cannot be longer than 5 digits</mat-error
+        >Post Code is required</mat-error
       >
     </mat-form-field>
   </div>
   <div class="flex flex-col">
     <mat-label>Address</mat-label>
-    <mat-form-field class="" appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
       <input matInput placeholder="Enter Address" formControlName="address" />
       <mat-error *ngIf="address?.hasError('required')"
         >Address is required</mat-error
       >
     </mat-form-field>
   </div>
-  {{ form.value | json }}
-</form>
+</div>

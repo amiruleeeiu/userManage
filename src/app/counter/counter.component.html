@@ -1,0 +1,96 @@
+<div class="m-12">
+  <h1>Counter value : {{ counter() }}</h1>
+  <h1>Drived value : {{ drivedCounter() }}</h1>
+  <h1>Multiplier value : {{ multiplier }}</h1>
+
+  <button
+    class="bg-green-600 px-3 py-1 text-white rounded"
+    (click)="increment()"
+  >
+    Increment
+  </button>
+  &nbsp;<button
+    class="bg-green-600 px-3 py-1 text-white rounded"
+    (click)="incrementMultiplier()"
+  >
+    Multiplier
+  </button>
+</div>
+
+<div class="m-12">
+  <form [formGroup]="form" class="grid grid-cols-2 gap-4">
+    <div>
+      <mat-label class="text-xl mb-2">User Info</mat-label>
+      <div class="flex flex-col">
+        <mat-label>Name</mat-label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter Name" formControlName="name" />
+          <mat-error *ngIf="name?.hasError('required')"
+            >Name is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="flex flex-col">
+        <mat-label>Phone</mat-label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter Phone" formControlName="phone" />
+          <mat-error *ngIf="phone?.hasError('required')"
+            >Phone is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="flex flex-col">
+        <mat-label>Email</mat-label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter Email" formControlName="email" />
+          <mat-error *ngIf="email?.hasError('required')"
+            >Email is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="flex flex-col">
+        <mat-label>Is NRB</mat-label>
+
+        <mat-radio-group aria-label="Select an option" formControlName="isNRB">
+          <mat-radio-button value="true">Yes</mat-radio-button>
+          <mat-radio-button value="false">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="flex flex-col" *ngIf="form.value.isNRB == 'false'">
+        <mat-label>NID</mat-label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter NID" formControlName="nid" />
+          <mat-error *ngIf="nid?.hasError('required')"
+            >NID is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="flex flex-col" *ngIf="this.form.value.isNRB == 'true'">
+        <mat-label>Passport</mat-label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input
+            matInput
+            placeholder="Enter Passport"
+            formControlName="passport"
+          />
+          <mat-error *ngIf="passport?.hasError('required')"
+            >Passport is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <mat-label class="text-xl mb-2">Present Address</mat-label>
+      <app-address1
+        [parentForm]="form"
+        [addressType]="'presentAddress'"
+      ></app-address1>
+      <mat-label class="text-xl mb-2">Permanent Address</mat-label>
+      <app-address1
+        [parentForm]="form"
+        [addressType]="'permanentAddress'"
+      ></app-address1>
+    </div>
+    <button class="mt-3" mat-raised-button (click)="submit()">Submit</button>
+  </form>
+</div>
